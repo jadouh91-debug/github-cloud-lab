@@ -1,0 +1,27 @@
+git config --global user.name "Hasan Jadou"
+git config --global user.email "twoj-email@example.com"
+
+git checkout -b feature/hello-world
+git add hello.py README.md
+git commit -m "Add hello.py with greet function and README"
+git push origin feature/hello-world
+
+git checkout main
+git pull origin main
+
+git checkout -b feature/farewell
+git add hello.py
+git commit -m "Add farewell function closes #1"
+git push origin feature/farewell
+
+python -m pytest tests/ -v
+docker build -t github-cloud-lab:local .
+docker compose up -d --build
+docker compose down
+
+minikube start --driver=docker
+eval $(minikube docker-env)
+docker build -t webapp:v1 webapp/
+kubectl apply -f k8s/
+kubectl get pods
+minikube service webapp --url
